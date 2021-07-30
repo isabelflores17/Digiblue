@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Product</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+
+
+</head>
+
+<body class="d-flex flex-column h-100" onload="load()">
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+            <a class="navbar-brand" href="/">
+                <img src="../images/Logo_DigiBlue1.png" alt="UTS" style="width: 100px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/"> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Mi carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-question"></i> Ayuda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-book"></i> Catálogo</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav item">
+                        <a class="nav-link" href="#">
+                            <span id="lblName"></span>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <form onsubmit="updateProduct(event)">
+                    <div class="text-center">
+                        <img src="../images/Logo_DigiBlue1.png" class="img-fluid" style="width: 300px;" />
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-pretend">
+                            <span class="input-group-text"><i class="fas fa-check-square"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Nombre del producto" required minlength="" id="txtName">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-pretend">
+                            <span class="input-group-text"><i class="fas fa-check-square"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Marca" id="txtMarca">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-pretend">
+                            <span class="input-group-text"><i class="fas fa-check-square"></i></span>
+                        </div>
+                        <input type="tel" class="form-control" placeholder="Modelo" required minlength="" id="txtModelo">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-pretend">
+                            <span class="input-group-text"><i class="fas fa-check-square"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Precio" required minlength="" id="txtPrecio" vale="10,800">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-pretend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Año de Lanzamiento" required minlength="4" id="txtAñoLanzamiento">
+                    </div>
+                    <div class=" input-group form-group">
+                        <div class="input-group-pretend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Contraseña" required id="txtPassword" value="5678">
+                    </div>
+
+                    <br />
+                    <div class="form group">
+                        <input type="submit" value="Actualizar" class="btn btn-warning">
+                        <input type="button" data-toggle="modal" value="Eliminar" class="btn btn-danger" data-target="#myModal">
+                    </div>
+                    <br/>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!--Modal Header-->
+                    <div class="modal-header">
+                        <h4 class="modal-title">¿Esta seguro que desea eliminar el producto? <span class="lblName">Nombre</span>?</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal Body-->
+                    <div class="modal-body">
+                        <p>El registro del producto<span class="lblName">Nombre</span>será eliminado y no podrá ingresar al sistema</p>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-danger" onclick="deleteProduct()">Sí</button>
+                        </div>
+
+
+    </main>
+    <footer class="footer bg-primarytext-white-50 fixed-bottom py-3">
+        <!-- Elementos de footer -->
+        <div class="container ">
+
+            <!-- Botones de redes sociales -->
+            <ul class="list-unstyled list-inline text-center ">
+                <li class="list-inline-item ">
+                    <a class="btn-floating btn-fb mx-1 ">
+                        <i class="fab fa-facebook-f "> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item ">
+                    <a class="btn-floating btn-tw mx-1 ">
+                        <i class="fab fa-twitter "> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item ">
+                    <a class="btn-floating btn-gplus mx-1 ">
+                        <i class="fab fa-google-plus-g "> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item ">
+                    <a class="btn-floating btn-li mx-1 ">
+                        <i class="fab fa-linkedin-in "> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item ">
+                    <a class="btn-floating btn-dribbble mx-1 ">
+                        <i class="fab fa-dribbble "> </i>
+                    </a>
+                </li>
+            </ul>
+            <!-- Social buttons -->
+
+        </div>
+        <!-- Footer Elements -->
+
+        <div class="container text-center ">
+            <span class="text-white "><i class="fa fa-copyright " aria-hidden="true "></i> <Ri:a>ADigiblue</Ri:a></span>
+        </div>
+    </footer>
+    <div class="modal" id="myModalAlert">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+
+                <!--Modal Header-->
+                <div class="modal-header ">
+                    <h4 class="modal-title ">Alerta!!!</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal Body-->
+                <div class="modal-body">
+                    <p>No se pudo eliminar el producto<span class="lblName">Nombre</span>.</p>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="$( '.modal-backdrop').hide()">Ok</button>
+                    </div>
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+                <script>
+                    window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js "><\/script>')
+                </script>
+                <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
+
+                <script src="../js/Domain/User.js "></script>
+                <script src="../js/Util/ApiFetch.js "></script>
+                <script src="../js/User.js"></script>
+
+
+</body>
+
+</html>
